@@ -11,6 +11,11 @@ resource "azurerm_container_app_environment" "cae_01" {
     name                  = var.cae_01_workload_profile
     workload_profile_type = var.cae_01_workload_profile
   }
+  lifecycle {
+    ignore_changes = [
+      infrastructure_resource_group_name
+    ]
+  }
 }
 
 resource "azurerm_container_app" "aca_01" {
