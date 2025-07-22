@@ -28,7 +28,7 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "mcr.microsoft.com/k8se/quickstart:latest"
+      image  = "docker.io/nginxdemos/hello:latest"
       cpu    = 0.25
       memory = "0.5Gi"
     }
