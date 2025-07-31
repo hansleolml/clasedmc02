@@ -22,6 +22,11 @@ variable "rg_02_name" {
   type        = string
 }
 
+// Storage Account 01
+variable "st_01_name" {
+  description = "Nombre del storage account"
+  type        = string
+}
 
 // Container Apps(ca) & Environments(cae) 01
 
@@ -40,3 +45,9 @@ variable "aca_01_name" {
   type        = string
 }
 
+//Azure Files 01
+
+variable "share_01_name" {
+  description = "Nombre del Azure Files"
+  type        = string
+}

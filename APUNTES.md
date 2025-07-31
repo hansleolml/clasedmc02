@@ -227,6 +227,9 @@
         - Type: A , name: @ , ipv4: 20.10.117.31 -> en este caso @ es para el root osea el dominio completo
         - Type: A , name: v1 , ipv4: 20.10.117.31 -> v1 para el subdominio = v1.hansquirozm.com
     - **Cloudfire configuro automaticamente certificado SSL**
+    - Corroborar TXT de dominio: https://www.skysnag.com/es/txt-record-lookup/
+
+
 ## Ingress Controler
 - para AKS solo es compatible con : Azure CNI NODE SUBNET (gestiona el tráfico y las IP virtuales, no es compatible con CNI overlay)
 - Installar Nginx Ingress Controller en Azure

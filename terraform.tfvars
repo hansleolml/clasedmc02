@@ -15,3 +15,7 @@ cae_01_workload_profile = "Consumption"
 
 // Container Apps(ca)
 aca_01_name = "ca-dmcexam-dev-eastus2-001"
+
+st_01_name = "stdmcdeveastus201"
+
+share_01_name = "share-dmc-dev-eastus2-001"
