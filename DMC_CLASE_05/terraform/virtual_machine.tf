@@ -12,7 +12,7 @@ resource "azurerm_linux_virtual_machine" "vm_01" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa_dmc_02.pub")
+    public_key = file("id_rsa_dmc_02.pub")
   }
 
   os_disk {
@@ -27,3 +27,5 @@ resource "azurerm_linux_virtual_machine" "vm_01" {
     version   = "latest"
   }
 }
+
+#ssh-keygen -t rsa -b 4096 -f id_rsa_dmc_02
