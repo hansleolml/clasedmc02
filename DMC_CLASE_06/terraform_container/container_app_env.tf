@@ -44,4 +44,11 @@ resource "azurerm_container_app" "aca_01" {
     }
 
   }
+  lifecycle {
+    ignore_changes = [
+      template[0].container[0].volume_mounts,
+      template[0].volume,
+      #template[0].container[0].image
+    ]
+  }
 }
