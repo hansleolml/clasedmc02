@@ -1,7 +1,7 @@
 location = "East US 2"
 tags = {
   Environment = "Desarrollo"
-  Clase  = "DMC"
+  Clase       = "DMC"
   Requester   = "hansleolml@gmail.com"
   Project     = "Portales Peru"
 }
