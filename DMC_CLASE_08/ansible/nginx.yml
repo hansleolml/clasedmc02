@@ -1,0 +1,20 @@
+- name: Configurar servidor con Nginx
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Actualizar paquetes
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Instalar Nginx
+      apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Asegurar que Nginx esté activo
+      service:
+        name: nginx
+        state: started
+        enabled: true
