@@ -7,7 +7,7 @@ tags = {
 }
 // RESOURCE GROUP 01------------------------------- 
 rg_01_name = "rg-dmcexam-dev-eastus2-003"
-rg_02_name = "rg-dmcexam-dev-eastus2-004"
+rg_02_name = "rg-dmcexam-dev-eastus2-005"
 
 // Environments(cae)
 cae_01_name             = "cae-dmcexam-dev-eastus2-001"

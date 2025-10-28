@@ -28,7 +28,7 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "docker.io/nginxdemos/hello:latest"
+      image  = "javaaplicacion:1.0.0"
       cpu    = 0.25
       memory = "0.5Gi"
     }
@@ -43,5 +43,10 @@ resource "azurerm_container_app" "aca_01" {
       percentage      = 100
     }
 
+  }
+  lifecycle {
+    ignore_changes = [
+      template[0].container[0].image
+    ]
   }
 }
