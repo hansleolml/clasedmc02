@@ -28,7 +28,7 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "javaaplicacion:1.0.0"
+      image  = "docker.io/nginxdemos/hello:latest"
       cpu    = 0.25
       memory = "0.5Gi"
     }
