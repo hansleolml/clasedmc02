@@ -3,8 +3,6 @@ resource "azurerm_container_app_environment" "cae_01" {
   location                           = azurerm_resource_group.rg_01.location
   resource_group_name                = azurerm_resource_group.rg_01.name
   infrastructure_resource_group_name = var.cae_01_name
-  infrastructure_subnet_id           = azurerm_subnet.vnet_01_subnet_01.id
-  internal_load_balancer_enabled     = false
   tags = merge(var.tags, {
     Workload = "Transversal"
   })
