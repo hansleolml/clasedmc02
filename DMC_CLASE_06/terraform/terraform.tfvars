@@ -6,4 +6,4 @@ tags = {
   Project     = "Portales Peru"
 }
 // RESOURCE GROUP 01------------------------------- 
-rg_01_name = "rg-dmcexam-dev-eastus2-003"
+rg_01_name = "rg-dmcexam-dev-eastus2-001"

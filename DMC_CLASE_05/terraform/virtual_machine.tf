@@ -1,18 +1,16 @@
-resource "azurerm_linux_virtual_machine" "vm_01" {
+resource "azurerm_linux_virtual_machine" "example" {
   name                = "vm-dmcexam-dev-eastus2-001"
   resource_group_name = azurerm_resource_group.rg_01.name
   location            = azurerm_resource_group.rg_01.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  custom_data         = base64encode(file("install.sh"))
-
   network_interface_ids = [
     azurerm_network_interface.nic_01.id,
   ]
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("id_rsa_dmc_02.pub")
+    public_key = file("~/.ssh/id_rsa_dmc.pub")
   }
 
   os_disk {
@@ -28,4 +26,4 @@ resource "azurerm_linux_virtual_machine" "vm_01" {
   }
 }
 
-#ssh-keygen -t rsa -b 4096 -f id_rsa_dmc_02
+#ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_dmc
