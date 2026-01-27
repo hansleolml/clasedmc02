@@ -40,7 +40,7 @@ resource "azurerm_container_app" "aca_01" {
   }
   ingress {
     external_enabled           = true
-    target_port                = 80
+    target_port                = 5000
     allow_insecure_connections = false
 
     traffic_weight {

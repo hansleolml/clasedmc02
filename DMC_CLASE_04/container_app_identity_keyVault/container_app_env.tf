@@ -1,29 +1,34 @@
-resource "azurerm_container_app_environment" "cae_01" {
-  name                               = var.cae_01_name
-  location                           = azurerm_resource_group.rg_01.location
-  resource_group_name                = azurerm_resource_group.rg_01.name
-  infrastructure_resource_group_name = var.cae_01_name
-  tags = merge(var.tags, {
-    Workload = "Transversal"
-  })
+# resource "azurerm_container_app_environment" "cae_01" {
+#   name                               = var.cae_01_name
+#   location                           = azurerm_resource_group.rg_01.location
+#   resource_group_name                = azurerm_resource_group.rg_01.name
+#   infrastructure_resource_group_name = var.cae_01_name
+#   tags = merge(var.tags, {
+#     Workload = "Transversal"
+#   })
 
-  workload_profile {
-    name                  = var.cae_01_workload_profile
-    workload_profile_type = var.cae_01_workload_profile
-  }
-  lifecycle {
-    ignore_changes = [
-      infrastructure_resource_group_name
-    ]
-  }
+#   workload_profile {
+#     name                  = var.cae_01_workload_profile
+#     workload_profile_type = var.cae_01_workload_profile
+#   }
+#   lifecycle {
+#     ignore_changes = [
+#       infrastructure_resource_group_name
+#     ]
+#   }
+# }
+
+data "azurerm_container_app_environment" "cae_01" {
+  name = "aca-env-chavez-dev"
+  resource_group_name = "rg-cicd-terraform-app-chavez"
 }
 
 resource "azurerm_container_app" "aca_01" {
   name                         = var.aca_01_name
-  container_app_environment_id = azurerm_container_app_environment.cae_01.id
+  container_app_environment_id = data.azurerm_container_app_environment.cae_01.id
   resource_group_name          = azurerm_resource_group.rg_01.name
   revision_mode                = "Single"
-  workload_profile_name        = "Consumption"
+  #workload_profile_name        = "Consumption"
   identity {
     type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.identity_01.id]
