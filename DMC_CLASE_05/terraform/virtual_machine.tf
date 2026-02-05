@@ -1,5 +1,5 @@
 resource "azurerm_linux_virtual_machine" "example" {
-  name                = "vm-dmcexam-dev-eastus2-001"
+  name                = "vm-hans-dev-eastus2-001"
   resource_group_name = azurerm_resource_group.rg_01.name
   location            = azurerm_resource_group.rg_01.location
   size                = "Standard_F2"

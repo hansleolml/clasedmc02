@@ -16,6 +16,8 @@ COPY src ./src
 # Construir la aplicación
 RUN mvn clean package -DskipTests
 
+# aca obtengo el .jar 
+
 # Imagen final más pequeña
 FROM eclipse-temurin:17-jre
 

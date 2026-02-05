@@ -23,6 +23,7 @@ data "azurerm_container_app_environment" "cae_01" {
   resource_group_name = "rg-cicd-terraform-app-chavez"
 }
 
+
 resource "azurerm_container_app" "aca_01" {
   name                         = var.aca_01_name
   container_app_environment_id = data.azurerm_container_app_environment.cae_01.id
@@ -37,7 +38,7 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "docker.io/nginxdemos/hello:latest"
+      image  = "docker.io/nginxdemos/hello:0.4"
       cpu    = 0.25
       memory = "0.5Gi"
     }
