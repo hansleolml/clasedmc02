@@ -1,5 +1,5 @@
 resource "azurerm_network_security_group" "nsg_01" {
-  name                = "nsg-dmcexam-dev-eastus2-001"
+  name                = "nsg-quirozdmc-dev-westeurope-001"
   location            = azurerm_resource_group.rg_01.location
   resource_group_name = azurerm_resource_group.rg_01.name
 

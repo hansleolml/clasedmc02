@@ -19,8 +19,8 @@
 # }
 
 data "azurerm_container_app_environment" "cae_01" {
-  name = "env-javier"
-  resource_group_name = "rg-javierhuaman"
+  name = "cae-quirozdmc-dev-westus2-001"
+  resource_group_name = "rg-quirozdmc-dev-westus2-001"
 }
 
 resource "azurerm_container_app" "aca_01" {
@@ -33,14 +33,14 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "docker.io/nginxdemos/hello:latest"
+      image  = "docker.io/melaniapq1/app-saludo-dmc-01:v2.0"
       cpu    = 0.25
       memory = "0.5Gi"
     }
   }
   ingress {
     external_enabled           = true
-    target_port                = 80
+    target_port                = 5000
     allow_insecure_connections = false
 
     traffic_weight {

@@ -1,4 +1,4 @@
-location = "West Europe"
+location = "southcentralus"
 tags = {
   Environment = "Desarrollo"
   Clase       = "DMC"
@@ -6,4 +6,4 @@ tags = {
   Project     = "Portales Peru"
 }
 // RESOURCE GROUP 01------------------------------- 
-rg_01_name = "rg-hansquim-west-eastus2-002"
+rg_01_name = "rg-hanscript-dev-eastus2-004"
