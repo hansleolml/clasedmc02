@@ -31,6 +31,10 @@ resource "azurerm_container_app" "aca_01" {
     type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.identity_01.id]
   }
+  registry {
+    server   = data.azurerm_container_registry.acr-01.login_server
+    identity = azurerm_user_assigned_identity.identity_01.id
+  }
   template {
     min_replicas = 1
     container {
