@@ -5,4 +5,4 @@ tags = {
   Project     = "Terraform"
 }
 // RESOURCE GROUP 01------------------------------- 
-rg_01_name = "rg-dmcexam-dev-eastus2-001"
+rg_01_name = "rg-quirozansible-dev-eastus2-001"
