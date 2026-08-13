@@ -88,3 +88,31 @@ variable "vnet_01_subnet_02_ip" {
   description = "Lista de espacios de direcciones IP en formato CIDR"
   type        = list(string)
 }
+
+// SQL Database 01
+
+variable "sql_01_location" {
+  description = "La ubicación del SQL Server 01"
+  type        = string
+}
+
+variable "sql_01_server_name" {
+  description = "El nombre del SQL Server 01"
+  type        = string
+}
+
+variable "sql_01_db_name" {
+  description = "El nombre de la SQL Database 01"
+  type        = string
+}
+
+variable "sql_01_admin_login" {
+  description = "El usuario administrador del SQL Server 01"
+  type        = string
+}
+
+variable "sql_01_admin_password" {
+  description = "La contraseña del administrador del SQL Server 01"
+  type        = string
+  sensitive   = true
+}

@@ -34,3 +34,10 @@ vnet_01_subnet_01_ip   = ["10.100.0.0/20"] // subnet para container app environm
 
 vnet_01_subnet_02_name = "snet-hansqm2-dev-eastus2-002"
 vnet_01_subnet_02_ip   = ["10.100.16.0/24"] // para private endpoint
+
+// SQL Database 01
+sql_01_location       = "West US 2"
+sql_01_server_name    = "sql-hansqm2-dev-westus2-001"
+sql_01_db_name        = "sqldb-hansqm2-dev-eastus2-001"
+sql_01_admin_login    = "sqladmin"
+sql_01_admin_password = "ChangeMe!Dmc2026"

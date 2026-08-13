@@ -32,14 +32,14 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 1
     container {
       name   = "examplecontainerapp"
-      image  = "docker.io/nginxdemos/hello:latest"
+      image  = "docker.io/hansleolml/applicacion-env-01:latest"
       cpu    = 0.25
       memory = "0.5Gi"
     }
   }
   ingress {
     external_enabled           = true
-    target_port                = 80
+    target_port                = 5000
     allow_insecure_connections = false
 
     traffic_weight {

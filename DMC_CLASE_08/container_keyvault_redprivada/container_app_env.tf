@@ -15,7 +15,8 @@ resource "azurerm_container_app_environment" "cae_01" {
   }
   lifecycle {
     ignore_changes = [
-      infrastructure_resource_group_name
+      infrastructure_resource_group_name,
+      workload_profile
     ]
   }
 }
