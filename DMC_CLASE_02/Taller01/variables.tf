@@ -17,17 +17,6 @@ variable "rg_01_name" {
   type        = string
 }
 
-variable "rg_02_name" {
-  description = "El nombre del grupo de recursos 1"
-  type        = string
-}
-
-// Storage Account 01
-variable "st_01_name" {
-  description = "Nombre del storage account"
-  type        = string
-}
-
 // Container Apps(ca) & Environments(cae) 01
 
 variable "cae_01_workload_profile" {
@@ -42,12 +31,5 @@ variable "cae_01_name" {
 
 variable "aca_01_name" {
   description = "El nombre del aca 01"
-  type        = string
-}
-
-//Azure Files 01
-
-variable "share_01_name" {
-  description = "Nombre del Azure Files"
   type        = string
 }
