@@ -29,7 +29,7 @@ resource "azurerm_container_app" "aca_01" {
   container_app_environment_id = azurerm_container_app_environment.cae_01.id
   resource_group_name          = azurerm_resource_group.rg_01.name
   revision_mode                = "Single"
-  #workload_profile_name        = "Consumption"
+  workload_profile_name        = "Consumption"
   identity {
     type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.identity_01.id]
