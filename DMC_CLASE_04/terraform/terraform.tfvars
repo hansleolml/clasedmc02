@@ -1,4 +1,4 @@
-location = "East US 2"
+location = "centralus"
 tags = {
   Environment = "Desarrollo"
   Clase       = "DMC"
@@ -6,4 +6,4 @@ tags = {
   Project     = "Portales Peru"
 }
 // RESOURCE GROUP 01------------------------------- 
-rg_01_name = "rg-hansqm-dev-eastus2-001"
+rg_01_name = "rg-dmcclase04-dev-eastus2-002"

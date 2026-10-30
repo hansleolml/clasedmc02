@@ -2,7 +2,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   name                = "vm-hans-dev-eastus2-001"
   resource_group_name = azurerm_resource_group.rg_01.name
   location            = azurerm_resource_group.rg_01.location
-  size                = "Standard_F2"
+  size                = "Standard_D2s_v3"
   admin_username      = "adminuser"
   network_interface_ids = [
     azurerm_network_interface.nic_01.id,

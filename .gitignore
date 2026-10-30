@@ -36,3 +36,7 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# SSH keys
+DMC_CLASE_04/terraform/id_rsa_dmc_02
+DMC_CLASE_04/terraform/id_rsa_dmc_02.pub
