@@ -8,12 +8,21 @@ public class HolaMundoController {
 
     @GetMapping("/")
     public String holaMundo() {
-        return "¡Hola Mundo desde Java!!! inicio DMC clase 04 taller 02";
+        return "¡Hola Mundo desde Java!!! inicio DMC clase 03 taller 02 - fecha 27/10/2026";
     }
 
     @GetMapping("/saludo")
     public String saludo() {
-        return "Bienvenido a mi aplicación Java - inicio DMC clase 04 taller 02";
+        return "Saludo desde mi aplicación Java - inicio DMC clase 03 taller 02 - fecha 27/10/2026";
+    }
+
+    @GetMapping("/secreto")
+    public String secreto() {
+        String passwordbd = System.getenv("passwordbd");
+        if (passwordbd == null) {
+            return "La variable de entorno passwordbd no está definida";
+        }
+        return passwordbd;
     }
 }
 
