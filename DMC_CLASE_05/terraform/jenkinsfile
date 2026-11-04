@@ -56,7 +56,7 @@ pipeline {
 set -e
 docker pull ${IMAGE_NAME}:${COMMIT}
 docker rm -f jenkinsdocker || true
-docker run -d --name jenkinsdocker --restart unless-stopped -p 8080:8080 ${IMAGE_NAME}:${COMMIT}
+docker run -d --name jenkinsdocker --restart unless-stopped -p 443:8080 ${IMAGE_NAME}:${COMMIT}
 EOF
                     '''
                 }
