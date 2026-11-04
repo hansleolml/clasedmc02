@@ -1,88 +1,57 @@
 pipeline {
     agent any
+
+    environment {
+        REPO_URL = 'https://github.com/hansleolml/clasedmc02.git'
+        IMAGE_NAME = 'hansleolml/jenkinsdocker'
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 echo '=== Etapa: Checkout ==='
-                echo 'Clonando repositorio desde Git...'
-                echo 'Verificando rama: main'
-                echo 'Checkout completado exitosamente'
+                echo 'Clonando https://github.com/hansleolml/clasedmc02'
+                sh '''
+                    rm -rf clasedmc02
+                    git clone --depth 1 --branch master "${REPO_URL}" clasedmc02
+                '''
+                script {
+                    env.COMMIT = sh(script: 'git -C clasedmc02 rev-parse HEAD', returnStdout: true).trim()
+                }
+                echo "Repositorio clonado. Commit: ${env.COMMIT}"
             }
         }
-        stage('Build') {
+
+        stage('Build Image') {
             steps {
-                echo '=== Etapa: Build ==='
-                echo 'Compilando aplicación Java con Maven...'
-                echo 'mvn clean compile'
-                echo 'Resolviendo dependencias...'
-                echo 'Compilando clases Java...'
-                echo 'Build completado exitosamente'
+                echo '=== Etapa: Build de imagen Docker ==='
+                dir('clasedmc02/DMC_CLASE_03/Java_hello') {
+                    sh 'docker build -t "${IMAGE_NAME}:${COMMIT}" .'
+                }
+                echo "Imagen ${env.IMAGE_NAME}:${env.COMMIT} creada"
             }
         }
-        stage('Test') {
+
+        stage('Push Docker Hub') {
             steps {
-                echo '=== Etapa: Test ==='
-                echo 'Ejecutando tests unitarios...'
-                echo 'mvn test'
-                echo 'Ejecutando HolaMundoControllerTest...'
-                echo 'Tests ejecutados: 5'
-                echo 'Tests pasados: 5'
-                echo 'Tests fallidos: 0'
-                echo 'Cobertura de código: 85%'
-                echo 'Tests completados exitosamente'
-            }
-        }
-        stage('Package') {
-            steps {
-                echo '=== Etapa: Package ==='
-                echo 'Empaquetando aplicación...'
-                echo 'mvn package'
-                echo 'Generando JAR: target/mi-app-1.0.0.jar'
-                echo 'Construyendo imagen Docker...'
-                echo 'docker build -t mi-app:latest .'
-                echo 'Imagen Docker creada exitosamente'
-                echo 'Package completado'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo '=== Etapa: Deploy ==='
-                echo 'Desplegando aplicación en Kubernetes...'
-                echo 'Aplicando configuración de namespace...'
-                echo 'kubectl apply -f kubernetes/kuber_namespace.yaml'
-                echo 'Desplegando aplicación con LoadBalancer...'
-                echo 'kubectl apply -f kubernetes/kuber_deploy_loadba.yaml'
-                echo 'Esperando que los pods estén listos...'
-                echo 'Pods desplegados: 2/2'
-                echo 'Servicio expuesto en: http://localhost:8080'
-                echo 'Deploy completado exitosamente'
-            }
-        }
-        stage('Verification') {
-            steps {
-                echo '=== Etapa: Verification ==='
-                echo 'Verificando estado de la aplicación...'
-                echo 'curl http://localhost:8080/health'
-                echo 'Estado: OK'
-                echo 'Verificando endpoint principal...'
-                echo 'curl http://localhost:8080/'
-                echo 'Respuesta: Hola Mundo desde Spring Boot!'
-                echo 'Verificación completada exitosamente'
+                echo '=== Etapa: Push a Docker Hub ==='
+                sh 'docker push "${IMAGE_NAME}:${COMMIT}"'
+                echo "Imagen publicada: ${env.IMAGE_NAME}:${env.COMMIT}"
             }
         }
     }
+
     post {
         success {
-            echo '=== Pipeline CI/CD completado exitosamente ==='
-            echo 'Todas las etapas se ejecutaron correctamente'
+            echo '=== Pipeline completado: imagen publicada en Docker Hub ==='
         }
         failure {
-            echo '=== Pipeline CI/CD falló ==='
-            echo 'Revisar logs para más detalles'
+            echo '=== Pipeline fallo ==='
+            echo 'Revisar logs para mas detalles'
         }
         always {
-            echo '=== Limpiando recursos temporales ==='
-            echo 'Pipeline finalizado'
+            sh 'rm -rf clasedmc02 || true'
+            echo '=== Pipeline finalizado ==='
         }
     }
 }

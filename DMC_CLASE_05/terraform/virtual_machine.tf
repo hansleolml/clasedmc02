@@ -1,8 +1,8 @@
 resource "azurerm_linux_virtual_machine" "vm_01" {
-  name                = "vm-hansscript-dev-westeurope-001"
+  name                = "vm-dmcclase05-dev-souclus-001"
   resource_group_name = azurerm_resource_group.rg_01.name
   location            = azurerm_resource_group.rg_01.location
-  size                = "Standard_F2"
+  size                = "Standard_D2s_v3"
   admin_username      = "adminuser"
   #custom_data         = base64encode(file("install.sh"))
 

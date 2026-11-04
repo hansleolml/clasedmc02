@@ -8,12 +8,12 @@ public class HolaMundoController {
 
     @GetMapping("/")
     public String holaMundo() {
-        return "¡Hola Mundo desde Java!!! inicio DMC clase 03 taller 02 - fecha 27/10/2026";
+        return "¡Hola Mundo desde Java!!! inicio DMC clase 05 - fecha 03/11/2026";
     }
 
     @GetMapping("/saludo")
     public String saludo() {
-        return "Saludo desde mi aplicación Java - inicio DMC clase 03 taller 02 - fecha 27/10/2026";
+        return "Saludo desde mi aplicación Java - inicio DMC clase 05 - fecha 03/11/2026";
     }
 
     @GetMapping("/secreto")

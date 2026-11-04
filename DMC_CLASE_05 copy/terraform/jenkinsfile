@@ -1,0 +1,88 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                echo '=== Etapa: Checkout ==='
+                echo 'Clonando repositorio desde Git...'
+                echo 'Verificando rama: main'
+                echo 'Checkout completado exitosamente'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo '=== Etapa: Build ==='
+                echo 'Compilando aplicación Java con Maven...'
+                echo 'mvn clean compile'
+                echo 'Resolviendo dependencias...'
+                echo 'Compilando clases Java...'
+                echo 'Build completado exitosamente'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo '=== Etapa: Test ==='
+                echo 'Ejecutando tests unitarios...'
+                echo 'mvn test'
+                echo 'Ejecutando HolaMundoControllerTest...'
+                echo 'Tests ejecutados: 5'
+                echo 'Tests pasados: 5'
+                echo 'Tests fallidos: 0'
+                echo 'Cobertura de código: 85%'
+                echo 'Tests completados exitosamente'
+            }
+        }
+        stage('Package') {
+            steps {
+                echo '=== Etapa: Package ==='
+                echo 'Empaquetando aplicación...'
+                echo 'mvn package'
+                echo 'Generando JAR: target/mi-app-1.0.0.jar'
+                echo 'Construyendo imagen Docker...'
+                echo 'docker build -t mi-app:latest .'
+                echo 'Imagen Docker creada exitosamente'
+                echo 'Package completado'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '=== Etapa: Deploy ==='
+                echo 'Desplegando aplicación en Kubernetes...'
+                echo 'Aplicando configuración de namespace...'
+                echo 'kubectl apply -f kubernetes/kuber_namespace.yaml'
+                echo 'Desplegando aplicación con LoadBalancer...'
+                echo 'kubectl apply -f kubernetes/kuber_deploy_loadba.yaml'
+                echo 'Esperando que los pods estén listos...'
+                echo 'Pods desplegados: 2/2'
+                echo 'Servicio expuesto en: http://localhost:8080'
+                echo 'Deploy completado exitosamente'
+            }
+        }
+        stage('Verification') {
+            steps {
+                echo '=== Etapa: Verification ==='
+                echo 'Verificando estado de la aplicación...'
+                echo 'curl http://localhost:8080/health'
+                echo 'Estado: OK'
+                echo 'Verificando endpoint principal...'
+                echo 'curl http://localhost:8080/'
+                echo 'Respuesta: Hola Mundo desde Spring Boot!'
+                echo 'Verificación completada exitosamente'
+            }
+        }
+    }
+    post {
+        success {
+            echo '=== Pipeline CI/CD completado exitosamente ==='
+            echo 'Todas las etapas se ejecutaron correctamente'
+        }
+        failure {
+            echo '=== Pipeline CI/CD falló ==='
+            echo 'Revisar logs para más detalles'
+        }
+        always {
+            echo '=== Limpiando recursos temporales ==='
+            echo 'Pipeline finalizado'
+        }
+    }
+}
