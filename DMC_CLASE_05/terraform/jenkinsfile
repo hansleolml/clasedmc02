@@ -39,11 +39,35 @@ pipeline {
                 echo "Imagen publicada: ${env.IMAGE_NAME}:${env.COMMIT}"
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo '=== Etapa: Deploy ==='
+                echo 'Conectando por SSH a adminuser@20.97.4.16'
+                withCredentials([sshUserPrivateKey(
+                    credentialsId: 'llaveprivada',
+                    keyFileVariable: 'SSH_KEY'
+                )]) {
+                    sh '''
+                        ssh -i "$SSH_KEY" \
+                            -o StrictHostKeyChecking=no \
+                            -o UserKnownHostsFile=/dev/null \
+                            adminuser@20.97.4.16 bash -s <<EOF
+set -e
+docker pull ${IMAGE_NAME}:${COMMIT}
+docker rm -f jenkinsdocker || true
+docker run -d --name jenkinsdocker --restart unless-stopped -p 8080:8080 ${IMAGE_NAME}:${COMMIT}
+EOF
+                    '''
+                }
+                echo "Contenedor jenkinsdocker publicado en http://20.97.4.16:8080"
+            }
+        }
     }
 
     post {
         success {
-            echo '=== Pipeline completado: imagen publicada en Docker Hub ==='
+            echo '=== Pipeline completado: imagen publicada y desplegada ==='
         }
         failure {
             echo '=== Pipeline fallo ==='
