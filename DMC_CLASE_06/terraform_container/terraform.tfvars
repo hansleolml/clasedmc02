@@ -16,4 +16,4 @@ aca_01_name = "ca-dmclase06-dev-westus2-001"
 
 st_01_name = "stdmclase06westus201"
 
-share_01_name = "share-dmclase06-dev-westus2-001"
+share_01_name = "share-dmclase06-westus2-001"

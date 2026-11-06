@@ -33,14 +33,14 @@ resource "azurerm_container_app" "aca_01" {
     min_replicas = 3
     container {
       name   = "examplecontainerapp"
-      image  = "docker.io/melaniapq1/app-saludo-dmc-01:v2.0"
+      image  = "docker.io/hansleolml/mi-app-java:img"
       cpu    = 0.25
       memory = "0.5Gi"
     }
   }
   ingress {
     external_enabled           = true
-    target_port                = 5000
+    target_port                = 8080
     allow_insecure_connections = false
 
     traffic_weight {
